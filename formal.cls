@@ -4,6 +4,7 @@
 \LoadClass[12pt,a4paper,draft]{letter}
 
 \RequirePackage[margin=2.5cm, noheadfoot, nomarginpar]{geometry}
+\RequirePackage{setspace}
 
 \renewcommand*{\baselinestretch}{2}
 
@@ -17,7 +18,7 @@
     {\raggedleft\@date\par}%
   \else  % home address
     \thispagestyle{empty}%
-    \begin{minipage}[t]{0.45\textwidth}\fromsig\\ \fromaddress\end{minipage}%
+    \begin{minipage}[t]{0.45\textwidth}\setstretch{1.2}\fromsig\\ \fromaddress\end{minipage}%
     \hfill%
     \begin{minipage}[t]{0.45\textwidth}\raggedleft\@date\end{minipage}%
     \par%
@@ -25,7 +26,7 @@
   \ifx\@empty\toaddress\else
     \vfill%
     \hspace*{\longindentation}%
-    \parbox{\indentedwidth}{\raggedright \toname \\ \toaddress \par}%
+    \parbox{\indentedwidth}{\setstretch{1.2}\raggedright \toname \\ \toaddress \par}%
   \fi
   \vfill%
   \begin{center}\Large\textbf{\MakeUppercase{#1}}\end{center}\par\vspace{3\parskip}}
