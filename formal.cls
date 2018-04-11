@@ -8,6 +8,11 @@
 
 \renewcommand*{\baselinestretch}{2}
 
+\newcommand*{\personalinfo}[1]{\def\frompersonalinfo{#1}}
+\newcommand*{\place}[1]{\def\fromplace{#1}}
+\personalinfo{}
+\place{}
+
 \longindentation=.6\textwidth
 \newdimen\indentedwidth
 \indentedwidth=\textwidth
@@ -18,9 +23,20 @@
     {\raggedleft\@date\par}%
   \else  % home address
     \thispagestyle{empty}%
-    \begin{minipage}[t]{0.45\textwidth}\setstretch{1.2}\fromsig\\ \fromaddress\end{minipage}%
+    \begin{minipage}[t]{0.45\textwidth}%
+        \setstretch{1.2}\fromsig\\ \fromaddress%
+        \ifx\@empty\frompersonalinfo\else
+        \\ \frompersonalinfo
+        \fi
+    \end{minipage}%
     \hfill%
-    \begin{minipage}[t]{0.45\textwidth}\raggedleft\@date\end{minipage}%
+    \begin{minipage}[t]{0.45\textwidth}%
+        \ifx\@empty\fromplace
+            \raggedleft\@date
+        \else
+            \raggedleft\fromplace, \@date
+        \fi
+    \end{minipage}%
     \par%
   \fi
   \ifx\@empty\toaddress\else
@@ -41,3 +57,4 @@
            \fromname
        \else \fromsig \fi\strut}%
    \par\vfill}
+
