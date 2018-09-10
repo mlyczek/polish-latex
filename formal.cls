@@ -1,9 +1,25 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{formal}[2017/08/04 Formal latex class]
 
+\DeclareOption{wide}{
+    \PassOptionsToPackage{margin=1.5cm}{geometry}
+}
+
+\DeclareOption{normal}{
+    \PassOptionsToPackage{margin=2.5cm}{geometry}
+}
+
+\DeclareOption*{
+    \ClassWarning{formal}{Unknown option '\CurrentOption'}
+}
+
+\ExecuteOptions{normal}
+
+\ProcessOptions\relax
+
 \LoadClass[12pt,a4paper,draft]{letter}
 
-\RequirePackage[margin=2.5cm, noheadfoot, nomarginpar]{geometry}
+\RequirePackage[noheadfoot, nomarginpar]{geometry}
 \RequirePackage{setspace}
 
 \renewcommand*{\baselinestretch}{2}
@@ -12,6 +28,8 @@
 \newcommand*{\place}[1]{\def\fromplace{#1}}
 \personalinfo{}
 \place{}
+
+\renewcommand{\ccname}{Do wiadomości}
 
 \longindentation=.6\textwidth
 \newdimen\indentedwidth
