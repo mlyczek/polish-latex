@@ -29,6 +29,13 @@
 \personalinfo{}
 \place{}
 
+\newcommand*{\@topdate}{%
+    \ifx\@empty\fromplace%
+        \raggedleft\@date
+    \else%
+        \raggedleft\fromplace, \@date\par
+    \fi}
+
 \renewcommand{\ccname}{Do wiadomości}
 
 \longindentation=.6\textwidth
@@ -38,7 +45,7 @@
 
 \renewcommand*{\opening}[1]{\ifx\@empty\fromaddress
   \thispagestyle{firstpage}%
-    {\raggedleft\@date\par}%
+    {\@topdate}%
   \else  % home address
     \thispagestyle{empty}%
     \begin{minipage}[t]{0.45\textwidth}%
@@ -49,30 +56,26 @@
     \end{minipage}%
     \hfill%
     \begin{minipage}[t]{0.45\textwidth}%
-        \ifx\@empty\fromplace
-            \raggedleft\@date
-        \else
-            \raggedleft\fromplace, \@date
-        \fi
+        \@topdate
     \end{minipage}%
     \par%
   \fi
   \ifx\@empty\toaddress\else
-    \vfill%
+    \vspace{\stretch{1}}%
     \hspace*{\longindentation}%
     \parbox{\indentedwidth}{\setstretch{1.2}\raggedright \toname \\ \toaddress \par}%
   \fi
-  \vfill%
-  \begin{center}\Large\textbf{\MakeUppercase{#1}}\end{center}\par\vspace{3\parskip}}
+  \vspace{\stretch{1}}%
+  \begin{center}\setstretch{1.2}\Large\textbf{\MakeUppercase{#1}}\end{center}\par\vspace{3\parskip}}
 
 \renewcommand*{\closing}[1]{\par\nobreak\vspace{6\parskip}%
   \stopbreaks
   \noindent
   \hspace*{\longindentation}%
   \parbox{\indentedwidth}{\raggedright
-       \ignorespaces #1\\[6\medskipamount]%
+          \ignorespaces \leavevmode #1\\[6\medskipamount]%
        \ifx\@empty\fromsig
            \fromname
        \else \fromsig \fi\strut}%
-   \par\vfill}
+   \par\vspace{\stretch{2}}}
 
