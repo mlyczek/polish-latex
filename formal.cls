@@ -29,6 +29,14 @@
 \personalinfo{}
 \place{}
 
+% First parameter is size, second is hint
+\newcommand\HandwrittenText[1]{%
+  \parbox[t]{#1}{%
+    \centering
+    \dotfill\par
+  }%
+}
+
 \newcommand*{\@topdate}{%
     \ifx\@empty\fromplace%
         \raggedleft\@date
